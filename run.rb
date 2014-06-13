@@ -18,8 +18,15 @@ begin
   day_links = facebook.collect_days
 
   # Go to each daily saga and group sagas by authors
-  puts facebook.collect_sagas(day_links)
+  sagas = facebook.collect_sagas(day_links)
 
+  sagas.each_pair do |author, ss|
+    puts "\n** #{author}'s Mini-Saga Collection **\n"
+    ss.sort.map do |day, s| #sorts by days
+      puts "\nDay #{day}:"
+      puts s
+    end
+  end
 ensure
   facebook.close
 end
