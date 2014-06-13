@@ -1,0 +1,3 @@
+user: FACEBOOK_USERNAME
+pass: FACEBOOK_PASSWORD
+close_browser_on_exit: true
