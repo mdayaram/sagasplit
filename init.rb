@@ -17,4 +17,5 @@ end
 
 USERNAME = config["user"]
 PASSWORD = config["pass"]
+DIRECTORY_URL = config["directory_link"]
 CLOSE_BROWSER = config["close_browser_on_exit"]

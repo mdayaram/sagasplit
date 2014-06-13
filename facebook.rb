@@ -32,11 +32,8 @@ class Facebook
     end
   end
 
-  def goto_saga_directory
-    @browser.goto 'https://www.facebook.com/groups/321835901304494/permalink/322256351262449/'
-  end
-
   def collect_days
+    @browser.goto DIRECTORY_URL
     day = 1
     links = {}
     while @browser.p(:text, "Day #{day}:").exists?

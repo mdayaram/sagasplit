@@ -13,8 +13,11 @@ facebook = Facebook.new :chrome
 begin
   # Login
   facebook.login
-  facebook.goto_saga_directory
+
+  # Collect daily saga links
   day_links = facebook.collect_days
+
+  # Go to each daily saga and group sagas by authors
   puts facebook.collect_sagas(day_links)
 
 ensure
