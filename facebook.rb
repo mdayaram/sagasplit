@@ -54,6 +54,14 @@ class Facebook
     links.each_pair do |day, link|
       @browser.goto link
       @browser.wait(5)
+      # Get the Director's saga first.
+      director = @browser.div(:class => "userContentWrapper").h5.text
+      rawpost = @browser.div(:class => "userContent").text
+      sagas[director] ||= {}
+      sagas[director][day] ||= []
+      sagas[director][day] << rawpost
+
+      # Get the sagas from the comments
       @browser.divs(:class => "UFICommentContent").each do |div|
         seemore = div.link(:text, /See More/)
         if seemore.exists? && seemore.visible?
