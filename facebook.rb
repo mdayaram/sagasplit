@@ -14,10 +14,17 @@ class Facebook
   def login
     @browser.goto 'https://www.facebook.com/'
     @browser.wait(5)
-    @browser.text_field(:id, "email").set USERNAME
-    @browser.text_field(:id, "pass").set PASSWORD
-    @browser.button(:type, "submit").click
-    @browser.wait(5)
+    if !UI_LOGIN
+      @browser.text_field(:id, "email").set USERNAME
+      @browser.text_field(:id, "pass").set PASSWORD
+      @browser.button(:type, "submit").click
+      @browser.wait(5)
+    else
+      # Wait for the user to input the login info.
+      Watir::Wait.until {
+        !@browser.text_field(:id, "pass").exists?
+      }
+    end
     while !@browser.li(:id, "navHome").exists? do
       if @browser.form(:class, "checkpoint").exists?
         continue = @browser.button(:value, "Continue")

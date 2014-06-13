@@ -1,4 +1,5 @@
 user: FACEBOOK_USERNAME
 pass: FACEBOOK_PASSWORD
 directory_link: http://PERMALINK/TO/SAGA/DIRECTORY/FACEBOOK/POST
+ui_login: true
 close_browser_on_exit: true
