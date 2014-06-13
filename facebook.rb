@@ -4,7 +4,7 @@ class Facebook
 
   def initialize browser
     @browser = Watir::Browser.new browser
-    @browser.driver.manage.window.resize_to 1811,2000
+    #@browser.driver.manage.window.resize_to 1240,768
   end
 
   def close
@@ -46,16 +46,19 @@ class Facebook
 
   def collect_sagas(links={})
     sagas = {}
-    day = 1
-    link = "https://www.facebook.com/groups/321835901304494/permalink/322486834572734/"
-
-    @browser.goto link
-    @browser.wait(5)
-    @browser.divs(:class => "UFICommentContent").each do |div|
-      seemore = div.link(:text, /See More/)
-      if seemore.exists? && seemore.visible?
-        seemore.click
+    links.each_pair do |day, link|
+      @browser.goto link
+      @browser.wait(5)
+      @browser.divs(:class => "UFICommentContent").each do |div|
+        seemore = div.link(:text, /See More/)
+        if seemore.exists? && seemore.visible?
+          seemore.click
+        end
+        author = div.link(:class, "UFICommentActorName").text
+        sagas[author] ||= {}
+        sagas[author][day] = div.text.sub("#{author} ", "")
       end
     end
+    sagas
   end
 end
