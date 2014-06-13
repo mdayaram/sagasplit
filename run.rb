@@ -24,7 +24,7 @@ begin
     puts "\n** #{author}'s Mini-Saga Collection **\n"
     ss.sort.map do |day, s| #sorts by days
       puts "\nDay #{day}:"
-      puts s
+      puts s.join("\n\n")
     end
   end
 ensure

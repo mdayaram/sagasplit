@@ -13,12 +13,10 @@ class Facebook
 
   def login
     @browser.goto 'https://www.facebook.com/'
-    @browser.wait(5)
     if !UI_LOGIN
       @browser.text_field(:id, "email").set USERNAME
       @browser.text_field(:id, "pass").set PASSWORD
       @browser.button(:type, "submit").click
-      @browser.wait(5)
     else
       # Wait for the user to input the login info.
       Watir::Wait.until {
@@ -63,7 +61,10 @@ class Facebook
         end
         author = div.link(:class, "UFICommentActorName").text
         sagas[author] ||= {}
-        sagas[author][day] = div.text.sub("#{author} ", "")
+        # It's possible that the same person comments multiple times on a thread.
+        # Since we don't know which is the saga, save all of them.
+        sagas[author][day] ||= []
+        sagas[author][day] << div.text.sub("#{author} ", "")
       end
     end
     sagas
