@@ -8,7 +8,7 @@ require 'open-uri'
 require_relative 'init'
 require_relative 'facebook'
 
-facebook = Facebook.new :chrome
+facebook = Facebook.new
 
 begin
   # Login

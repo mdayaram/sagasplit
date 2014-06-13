@@ -2,8 +2,8 @@ class Facebook
 
   attr_reader :browser
 
-  def initialize browser
-    @browser = Watir::Browser.new browser
+  def initialize
+    @browser = Watir::Browser.new :chrome
     #@browser.driver.manage.window.resize_to 1240,768
   end
 
