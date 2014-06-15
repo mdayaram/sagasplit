@@ -57,6 +57,10 @@ class Facebook
       # Get the Director's saga first.
       director = @browser.div(:class => "userContentWrapper").h5.text
       rawpost = @browser.div(:class => "userContent").text
+
+      # The first part of the director's post is the intro, strip that.
+      rawpost = rawpost[(rawpost.index("#{day}.") + "#{day}.".length)..-1]
+
       sagas[director] ||= {}
       sagas[director][day] ||= []
       sagas[director][day] << rawpost
