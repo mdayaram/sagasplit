@@ -41,8 +41,8 @@ class Facebook
     @browser.goto DIRECTORY_URL
     day = 1
     links = {}
-    while @browser.p(:text, "Day #{day}:").exists?
-      link = @browser.p(:text, "Day #{day}:").element(:xpath => './following-sibling::p').link.href
+    while @browser.p(:text, /Day #{day}:/).exists?
+      link = @browser.p(:text, /Day #{day}:/).element(:xpath => './following-sibling::p').link.href
       links[day] = link
       day += 1
     end
