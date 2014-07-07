@@ -25,6 +25,11 @@ class Facebook
     end
     while !@browser.li(:id, "navHome").exists? do
       if @browser.form(:class, "checkpoint").exists?
+        nosave = @browser.radio(:value, "dont_save")
+        if nosave.exists?
+          # don't save this browser as a trusted browser.
+          nosave.set
+        end
         continue = @browser.button(:value, "Continue")
         if continue.exists?
           continue.click
