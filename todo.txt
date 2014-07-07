@@ -1,3 +1,0 @@
-After day 15, the next few days are in a separate "div" and separated by <br> tags instead of <p> tags which changes the entire flow.
-
-To have maximum resiliency, it looks like we might just have to search for all <b> tags that match the "Day #{num}:" pattern and then just walk down the tree until we find the first link.
