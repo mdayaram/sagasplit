@@ -46,6 +46,11 @@ class Facebook
     @browser.goto DIRECTORY_URL
     day = 1
     links = {}
+    # TODO this could be a lot faster if we just fetched all the
+    # <b> tags that fit the pattern /Day \d+:/ and then traversed
+    # through those instead.  That way we only run the regex once
+    # rather than <day> number of times.
+    # But, you know, lazy...
     while @browser.b(:text, /Day #{day}:/).exists?
       link = @browser.b(:text, /Day #{day}:/).element(:xpath => './following::a[1]').attribute_value("href")
       links[day] = link
